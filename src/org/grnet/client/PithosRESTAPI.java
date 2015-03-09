@@ -266,6 +266,7 @@ public class PithosRESTAPI implements Serializable {
 			} else {
 				System.out.println(getConnection().getHeaderFields());
 				return String.valueOf(responseCode);
+
 			}
 		} else
 
@@ -393,7 +394,8 @@ public class PithosRESTAPI implements Serializable {
 
 			} else {
 				System.out.println(getConnection().getHeaderFields());
-				return String.valueOf(responseCode);
+			    return String.valueOf(responseCode);
+				
 			}
 
 		} else {
@@ -595,8 +597,8 @@ public class PithosRESTAPI implements Serializable {
 	 * 3.<strong>X-Container-Object-Meta</strong>.A list with all meta keys used by allowed objects (TBD)
 	 * </pre>
 	 * 
-	 *            <blockquote>> If a format=xml or format=json argument is
-	 *            given, extended information on the objects will be returned,
+	 *            <blockquote> If a format=xml or format=json argument is given,
+	 *            extended information on the objects will be returned,
 	 *            serialized in the chosen format. For each object, the
 	 *            information will include all object metadata, except
 	 *            user-defined (names will be in lower case and with hyphens
@@ -669,6 +671,7 @@ public class PithosRESTAPI implements Serializable {
 			} else {
 				System.out.println(getConnection().getHeaderFields());
 				return String.valueOf(responseCode);
+				
 			}
 
 		} else

@@ -113,7 +113,7 @@ public class PithosClientTest {
 		HashMap<String, String> headers = new HashMap<String, String>();
 
 		parameters.put("format", "json");
-		parameters.put("public", "");
+	//	parameters.put("public", "");
 
 		System.out.println(client.list_container_objects("pithos", parameters,
 				headers));
@@ -151,7 +151,7 @@ public class PithosClientTest {
 
 		parameters.put("format", "json");
 		System.out
-				.println(client.delete_container("test", parameters, headers));
+				.println(client.delete_container("test2", parameters, headers));
 
 	}
 
@@ -176,10 +176,10 @@ public class PithosClientTest {
 		parameters.put("format", "json");
 
 		// retrieve object hash representation
-		// parameters.put("hashmap", "True");
+		 parameters.put("hashmap", "True");
 
 		// parameters.put("version", "list");
-		 headers.put("Range", "bytes=0-9");
+		// headers.put("Range", "bytes=0-9");
 		System.out
 				.println(client.read_object_data(
 						"AriadneID/AriadneIdentification.rar", "", parameters,
@@ -193,12 +193,9 @@ public class PithosClientTest {
 		HashMap<String, String> parameters = new HashMap<String, String>();
 		HashMap<String, String> headers = new HashMap<String, String>();
 
-		// parameters.put("format", "json");
-		// parameters.put("hashmap", "True");
-		// parameters.put("version", "list");
-		// headers.put("Range", "bytes=0-9");
+		
 		System.out.println(client
-				.delete_object("test", "", parameters, headers));
+				.delete_object("testMainAttributes.properties", "", parameters, headers));
 
 	}
 
