@@ -47,8 +47,8 @@ public class PithosClientTest {
 
 		HashMap<String, String> headers = new HashMap<String, String>();
 
-		headers.put("X-Auth-User", "3141d95c-81fb-472f-a31a-acb4f6998b06");
-		headers.put("X-Auth-Key", "pOzcOkhPDZax9R-YD06-1EhgxTQq6d_HfNEFA6CV5qY");
+		headers.put("X-Auth-User", "auth_user");
+		headers.put("X-Auth-Key", "auth_key");
 
 		System.out.println(client.list_sharing_accounts(parameters, headers));
 

@@ -21,6 +21,7 @@ import java.util.Map;
 
 /**
  * @author kostas vogias
+ * @version v1.0
  *
  */
 public class PithosRESTAPI implements Serializable {
@@ -207,36 +208,24 @@ public class PithosRESTAPI implements Serializable {
 	 * 
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
 	 *            The request headers.
-	 * 
-	 *            <pre>
-	 * Supported parameters:
-	 * 	1.<strong>limit(optional)</strong> (The amount of results requested (default is 10000)).
-	 * 	2.<strong>marker(optional)</strong> (Return containers with name lexicographically after marker).
-	 * 	3.<strong>format(optional)</strong> (Optional extended reply type (can be json or xml)).
-	 * 
+	 * @my.headers <pre>
+	 * 1.<strong>limit(optional)</strong> (The amount of results requested (default is 10000)).
+	 * 2.<strong>marker(optional)</strong> (Return containers with name lexicographically after marker).
+	 * 3.<strong>format(optional)</strong> (Optional extended reply type (can be json or xml)).
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Supported header attributes:
-	 * 	1.<strong>X-Auth-Token(mandatory)</strong> (The user token).
-	 * 
-	 * </pre>
-	 * 
-	 * @return A list of account names. If a format=xml or format=json argument
+	 * @my.attributes <strong>X-Auth-Token(mandatory)</strong> (The user token).
+	 * @return <p>
+	 *         A list of account names. If a format=xml or format=json argument
 	 *         is given, extended information on the accounts will be returned,
 	 *         serialized in the chosen format. For each account, the
 	 *         information will include the following (names will be in lower
-	 *         case and with hyphens replaced with underscores):
-	 * 
-	 * 
-	 * 
-	 * @return.code <pre>
-	 * 200(OK)-The request succeeded
-	 * 204 (No content)-The user has no access to other accounts (only for non-extended replies)
-	 * </pre>
+	 *         case and with hyphens replaced with underscores).
+	 *         </p>
+	 * @return.code 200(OK)-The request succeeded
+	 * @return.code 204 (No content)-The user has no access to other accounts
+	 *              (only for non-extended replies)
 	 * 
 	 */
 	public String list_sharing_accounts(HashMap<String, String> parameters,
@@ -281,20 +270,12 @@ public class PithosRESTAPI implements Serializable {
 	/**
 	 * Retrieve account related information
 	 * 
-	 * 
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
 	 *            The request headers.
-	 * 
-	 *            <pre>
-	 * Supported parameters:
-	 * 1.<strong>until(optional)</strong> (Timestamp).
-	 * </pre>
-	 * 
-	 *            <pre>
-	 * Supported header attributes:
+	 * @my.headers 1.<strong>until(optional)</strong> (Timestamp).
+	 * @my.attributes <pre>
 	 * 1.<strong>X-Auth-Token(mandatory).</strong>The user token.
 	 * 2.<strong>If-Modified-Since (optional).</strong>Retrieve if account has changed since provided timestamp.
 	 * 3.<strong>If-Unmodified-Since(optional.)</strong>Retrieve if account has not changed since provided timestamp.
@@ -341,25 +322,22 @@ public class PithosRESTAPI implements Serializable {
 	/**
 	 * List account containers
 	 * 
-	 * 
 	 * @param parameters
 	 *            The request parameters.
 	 * @param headers
 	 *            The request headers.
-	 * 
-	 *            <pre>
-	 * Supported parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>until(optional)</strong> (Timestamp).
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Supported header attributes:
+	 * @my.headers <pre>
 	 * 1.<strong>X-Auth-Token(mandatory).</strong>The user token.
 	 * 2.<strong>If-Modified-Since (optional).</strong>Retrieve if account has changed since provided timestamp.
 	 * 3.<strong>If-Unmodified-Since(optional.)</strong>Retrieve if account has not changed since provided timestamp.
 	 * </pre>
-	 * @return A string containing a list of container names with a specified
+	 * @return <p>
+	 *         A string containing a list of container names with a specified
 	 *         format.
+	 *         </p>
 	 * @throws IOException
 	 */
 	public String list_account_containers(HashMap<String, String> parameters,
@@ -394,8 +372,8 @@ public class PithosRESTAPI implements Serializable {
 
 			} else {
 				System.out.println(getConnection().getHeaderFields());
-			    return String.valueOf(responseCode);
-				
+				return String.valueOf(responseCode);
+
 			}
 
 		} else {
@@ -410,27 +388,19 @@ public class PithosRESTAPI implements Serializable {
 	 * 
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
 	 *            The request headers.
-	 * 
-	 *            Supported headers:
-	 * 
-	 *            <pre>
+	 * @my.headers <pre>
 	 * 1.<strong>X-Account-Group-*</strong>.Optional user defined groups.
 	 * 2.<strong>X-Account-Meta-*</strong>.Optional user defined metadata.
 	 * </pre>
-	 * 
-	 *            Supported parameters:
-	 * 
-	 *            <pre>
-	 * 1.<strong>update</strong>.Do not replace metadata/groups (no value parameter)
-	 * </pre>
+	 * @my.attributes 1.<strong>update</strong>.Do not replace metadata/groups
+	 *                (no value parameter)
 	 * @return No reply content/headers,only response code.
-	 * 
 	 * @return.code <pre>
 	 * 202-Accepted
-	 * 400-The metadata exceed in number the allowed account metadata or the groups exceed in number the allowed groups or the group members exceed in number the allowed group members
+	 * 400-The metadata exceed in number the allowed account metadata or the groups exceed in number the allowed groups
+	 *     or the group members exceed in number the allowed group members
 	 * </pre>
 	 * @throws IOException
 	 */
@@ -473,27 +443,16 @@ public class PithosRESTAPI implements Serializable {
 	 *            container).
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
 	 *            The request headers.
-	 * 
-	 * 
-	 *            Supported headers.
-	 * 
-	 *            <pre>
+	 * @my.headers <pre>
 	 * 1.<strong>If-Modified-Since</strong>.Retrieve if container has changed since provided timestamp
 	 * 2.<strong>If-Unmodified-Since</strong>.Retrieve if container has not changed since provided timestamp
 	 * </pre>
-	 * 
-	 *            Supported request parameters.
-	 * 
-	 *            <pre>
+	 * @my.attributes <pre>
 	 * 1.<strong>until</strong>.Optional timestamp.
 	 * </pre>
-	 * 
-	 *            Reply headers.
-	 * 
-	 *            <pre>
+	 * @reply.headers <pre>
 	 * 1.<strong>X-Container-Object-Count</strong>.The total number of objects in the container
 	 * 2.<strong>X-Container-Bytes-Used</strong>.The total number of bytes of all objects stored
 	 * 3.<strong>X-Container-Block-Size</strong>.The block size used by the storage backend
@@ -504,12 +463,7 @@ public class PithosRESTAPI implements Serializable {
 	 * 8.<strong>X-Container-Meta-*</strong>.Optional user defined metadata
 	 * 9.<strong>Last-Modified</strong>.The last container modification date (regardless of until)
 	 * </pre>
-	 * 
-	 * @return.code
-	 * 
-	 *              <pre>
-	 * 204(No content) - The request succeeded.
-	 * </pre>
+	 * @return.code 204(No content) - The request succeeded.
 	 * @return The reply headers
 	 * @throws IOException
 	 */
@@ -561,21 +515,13 @@ public class PithosRESTAPI implements Serializable {
 	 *            container).
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
 	 *            The request headers.
-	 * 
-	 * <br>
-	 *            Supported headers.
-	 * 
-	 *            <pre>
+	 * @my.headers <pre>
 	 * 1.<strong>If-Modified-Since</strong>.Retrieve if container has changed since provided timestamp
 	 * 2.<strong>If-Unmodified-Since</strong>.Retrieve if container has not changed since provided timestamp
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Supported request parameters.
-	 *             
+	 * @my.attributes <pre>
 	 * 1.<strong>limit</strong>.The amount of results requested (default is 10000)
 	 * 2.<strong>marker</strong>.Return containers with name lexicographically after marker
 	 * 3.<strong>prefix</strong>.Return objects starting with prefix
@@ -587,28 +533,26 @@ public class PithosRESTAPI implements Serializable {
 	 * 9.<strong>public</strong>.Show only public objects (no value parameter / avalaible only for owner requests)
 	 * 10.<strong>until</strong>.Optional timestamp.
 	 * </pre>
-	 * 
-	 *            Reply headers.
-	 * 
-	 *            <pre>
+	 * @reply.headers <pre>
 	 * 1.<strong>X-Container-Block-Size</strong>.The block size used by the storage backend
 	 * 2.<strong>X-Container-Block-Hash</strong>.The hash algorithm used for block identifiers in object hashmaps
-	 * 4.<strong>Last-Modified</strong>.The last container modification date
-	 * 3.<strong>X-Container-Object-Meta</strong>.A list with all meta keys used by allowed objects (TBD)
+	 * 3.<strong>Last-Modified</strong>.The last container modification date
+	 * 4.<strong>X-Container-Object-Meta</strong>.A list with all meta keys used by allowed objects (TBD)
 	 * </pre>
+	 *                <p>
+	 *                If a format=xml or format=json argument is given,extended
+	 *                information on the objects will be returned, serialized in
+	 *                the chosen format. For each object, the information will
+	 *                include all object metadata, except user-defined (names
+	 *                will be in lower case and with hyphens replaced with
+	 *                underscores). User-defined metadata includes
+	 *                X-Object-Meta-*, X-Object-Manifest, Content-Disposition
+	 *                and Content-Encoding keys. Also, sharing directives will
+	 *                only be included with the actual shared objects (inherited
+	 *                permissions are not calculated):
+	 *                </p>
 	 * 
-	 *            <blockquote> If a format=xml or format=json argument is given,
-	 *            extended information on the objects will be returned,
-	 *            serialized in the chosen format. For each object, the
-	 *            information will include all object metadata, except
-	 *            user-defined (names will be in lower case and with hyphens
-	 *            replaced with underscores). User-defined metadata includes
-	 *            X-Object-Meta-*, X-Object-Manifest, Content-Disposition and
-	 *            Content-Encoding keys. Also, sharing directives will only be
-	 *            included with the actual shared objects (inherited permissions
-	 *            are not calculated): </blockquote>
-	 * 
-	 *            <pre>
+	 *                <pre>
 	 * 1.<strong>name</strong>.The name of the object
 	 * 2.<strong>hash</strong>.The ETag of the object
 	 * 3.<strong>bytes</strong>.The size of the object
@@ -622,10 +566,7 @@ public class PithosRESTAPI implements Serializable {
 	 * 11.<strong>x_object_sharing</strong>.Object permissions (optional)
 	 * 12.<strong>Object permissions (optional)</strong>.Allowed actions on object (optional)
 	 * 13.<strong>x_object_public</strong>.Object’s publicly accessible URI (optional: present if the object is public and the request user is the object owner)
-	 * 
-	 * 
 	 * </pre>
-	 * 
 	 * @return.code <pre>
 	 * 200(OK) - The request succeeded.
 	 * 204(No Content) - The container has no objects (only for non-extended replies)
@@ -671,7 +612,7 @@ public class PithosRESTAPI implements Serializable {
 			} else {
 				System.out.println(getConnection().getHeaderFields());
 				return String.valueOf(responseCode);
-				
+
 			}
 
 		} else
@@ -691,17 +632,12 @@ public class PithosRESTAPI implements Serializable {
 	 *            container).
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
-	 *            The request headers.<br>
-	 * 
-	 *            Request Headers:
-	 * 
-	 *            <pre>
+	 *            The request headers.
+	 * @my.headers <pre>
 	 * 1.<strong>X-Container-Policy-*</strong>.Container behavior and limits
 	 * 2.<strong>X-Container-Meta-*</strong>.Optional user defined metadata
 	 * </pre>
-	 * 
 	 * @return Reponse code
 	 * @throws IOException
 	 * @return.code <pre>
@@ -747,23 +683,16 @@ public class PithosRESTAPI implements Serializable {
 	 *            container).
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
-	 *            The request headers.<br>
-	 * 
-	 *            Request Headers:
-	 * 
-	 *            <pre>
+	 *            The request headers.
+	 * @my.headers <pre>
 	 * 1.<strong>Content-Length</strong>.The size of the supplied data (optional, to upload)
 	 * 2.<strong>Content-Type</strong>.The MIME content type of the supplied data (optional, to upload)
 	 * 3.<strong>Transfer-Encoding</strong>.Set to chunked to specify incremental uploading (if used, Content-Length is ignored)
 	 * 4.<strong>X-Container-Policy-*</strong>.Container behavior and limits
 	 * 5.<strong>X-Container-Meta-*</strong>.Optional user defined metadata
 	 * </pre>
-	 * 
-	 *            Request Parameters:
-	 * 
-	 *            <pre>
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional hash list reply type (can be json or xml)
 	 * 2.<strong>update</strong>.Do not replace metadata/policy (no value parameter)
 	 * </pre>
@@ -812,20 +741,14 @@ public class PithosRESTAPI implements Serializable {
 	 *            container).
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
-	 *            The request headers.<br>
-	 * 
-	 *            Request Parameters:
-	 * 
-	 *            <pre>
+	 *            The request headers.
+	 * @my.headers <pre>
 	 * 1.<strong>until</strong>.Optional timestamp
 	 * 2.<strong>delimiter</strong>.Optional delete objects starting with container name and delimiter
 	 * </pre>
-	 * 
 	 * @return Response code
 	 * @throws IOException
-	 * 
 	 * @return.code <pre>
 	 * 204 (No Content) - The request succeeded
 	 * 409 (Conflict) - The container is not empty
@@ -866,31 +789,21 @@ public class PithosRESTAPI implements Serializable {
 	 * 
 	 * @param filename
 	 *            The object name representation.
-	 * 
 	 * @param container
 	 *            The container of the object(default is pithos called
 	 *            container).
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
-	 *            The request headers.<br>
-	 * 
-	 *            <pre>
-	 * Request Headers:
+	 *            The request headers.
+	 * @my.headers <pre>
 	 * 1.<strong>If-Match</strong>.Retrieve if ETags match
 	 * 2.<strong>If-None-Match</strong>.Retrieve if ETags don’t match
 	 * 3.<strong>If-Modified-Since</strong>.Retrieve if object has changed since provided timestamp
 	 * 4.<strong>If-Unmodified-Since</strong>.Retrieve if object has not changed since provided timestamp
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Request Paremeters:
-	 * 1.<strong>version</strong>.Optional version identifier
-	 * </pre>
-	 * 
-	 *            <pre>
-	 * Response Headers:
+	 * @my.attributes <strong>version</strong>.Optional version identifier
+	 * @reply.headers <pre>
 	 * 1.<strong>ETag</strong>.The ETag of the object
 	 * 2.<strong>Content-Length</strong>.The size of the object
 	 * 3.<strong>Content-Type</strong>.The MIME content type of the object
@@ -901,7 +814,7 @@ public class PithosRESTAPI implements Serializable {
 	 * 8.<strong>X-Object-UUID</strong>.The object’s UUID
 	 * 9.<strong>X-Object-Version</strong>.The object’s version identifier
 	 * 10.<strong>X-Object-Version-Timestamp</strong>.The object’s version timestamp
-	 * 11.<strong>X-Object-Modified-By</strong>.The user that comitted the object’s version
+	 * 11.<strong>X-Object-Modified-By</strong>.The user that committed the object’s version
 	 * 12.<strong>X-Object-Manifest</strong>.Object parts prefix in <container>/<object> form (optional)
 	 * 13.<strong>X-Object-Sharing</strong>.Object permissions (optional)
 	 * 14.<strong>X-Object-Shared-By</strong>.Object inheriting permissions (optional)
@@ -911,10 +824,7 @@ public class PithosRESTAPI implements Serializable {
 	 * </pre>
 	 * @return The response headers
 	 * @throws IOException
-	 * 
-	 * @return.code <pre>
-	 * 200 (No Content) - The request succeeded
-	 * </pre>
+	 * @return.code 200(No Content)-The request succeeded.
 	 */
 	public Map<String, List<String>> retrieve_object_metadata(String filename,
 			String container, HashMap<String, String> parameters,
@@ -958,22 +868,16 @@ public class PithosRESTAPI implements Serializable {
 	/**
 	 * Either downloads an object or shows object info(JSON,XML).
 	 * 
-	 *
 	 * @param filename
 	 *            The object name representation.
-	 * 
 	 * @param container
 	 *            The container of the object(default is pithos called
 	 *            container).
 	 * @param parameters
 	 *            The request parameters.
-	 * 
 	 * @param headers
-	 *            The request headers.<br>
-	 * 
-	 * 
-	 *            <pre>
-	 * Request Headers:
+	 *            The request headers.
+	 * @my.headers <pre>
 	 * 1.<strong>Range</strong>.Optional range of data to retrieve
 	 * 2.<strong>If-Range</strong>.Retrieve the missing part if entity is unchanged; otherwise,retrieve the entire new entity (used together with Range header)
 	 * 3.<strong>If-Match</strong>.Retrieve if ETags match
@@ -981,34 +885,26 @@ public class PithosRESTAPI implements Serializable {
 	 * 5.<strong>If-Modified-Since</strong>.Retrieve if object has changed since provided timestamp
 	 * 6.<strong>If-Unmodified-Since</strong>.Retrieve if object has not changed since provided timestamp
 	 * </pre>
-	 * 
-	 * 
-	 *            <pre>
-	 * Request Parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional extended reply type (can be json or xml)
 	 * 2.<strong>hashmap</strong>.Optional request for hashmap (no value parameter)
 	 * 3.<strong>version</strong>.Optional version identifier or list (specify a format if requesting a list)
-	 * 4.<strong>disposition-type</strong>.Optional enforcement of the specific content disposition 
-	 * type (can be inline or attachement otherwise it is ignored - this will override the object’s Content-Disposition)
+	 * 4.<strong>disposition-type</strong>.Optional enforcement of the specific content disposition type
+	 * 			(can be inline or attachment otherwise it is ignored - this will override the object’s Content-Disposition)
 	 * </pre>
 	 * @return The actual object,except if a hashmap is requested or a
 	 *         version=list
 	 * @throws IOException
-	 * <br>
-	 * 
 	 * @example <pre>
 	 * <strong>Download object info:</strong>
-	 * 
 	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
 	 * HashMap<String, String> parameters = new HashMap<String, String>();
 	 * HashMap<String, String> headers = new HashMap<String, String>();
 	 * parameters.put("format", "json");
 	 * System.out.println(client.read_object_data("object_name", "", parameters,headers));
 	 * </pre>
-	 * 
 	 * @example <pre>
 	 * <strong>Download object :</strong>
-	 * 
 	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
 	 * HashMap<String, String> parameters = new HashMap<String, String>();
 	 * HashMap<String, String> headers = new HashMap<String, String>();
@@ -1016,9 +912,7 @@ public class PithosRESTAPI implements Serializable {
 	 * parameters.put("hashmap", "True");
 	 * System.out.println(client.read_object_data("object_name", "", parameters,headers));
 	 * </pre>
-	 * 
-	 *          <pre>
-	 * Response Headers:
+	 * @reply.headers <pre>
 	 * 1.<strong>ETag</strong>.The ETag of the object
 	 * 2.<strong>Content-Length</strong>.The size of the object
 	 * 3.<strong>Content-Type</strong>.The MIME content type of the object
@@ -1038,7 +932,6 @@ public class PithosRESTAPI implements Serializable {
 	 * 17.<strong>X-Object-Meta-*</strong>.Optional user defined metadata
 	 * 18.<strong>Content-Range</strong>.The range of data included (only on a single range request)
 	 * </pre>
-	 * 
 	 * @return.code <pre>
 	 * 200 (No Content) - The request succeeded
 	 * 206 (Parial Content) - The range request succeeded
@@ -1151,15 +1044,12 @@ public class PithosRESTAPI implements Serializable {
 	 * 
 	 * @param headers
 	 *            The request headers.<br>
-	 * 
-	 *            <pre>
-	 * Request Parameters
+	 * @my.attributes <pre>
 	 * 1.<strong>until</strong>.Optional timestamp
 	 * 2.<strong>delimiter</strong>.Optional delete also objects starting with object’s path and delimiter
 	 * </pre>
 	 * @return The response code.No reply content/headers.
 	 * @throws IOException
-	 * 
 	 * @return.code <pre>
 	 * 204 (No Content) - The request succeeded
 	 * </pre>
@@ -1209,11 +1099,8 @@ public class PithosRESTAPI implements Serializable {
 	 * @param parameters
 	 *            The request parameters.
 	 * @param headers
-	 *            The request headers.<br>
-	 * 
-	 *            <pre>
-	 * Request Headers:
-	 * 
+	 *            The request headers.
+	 * @my.headers <pre>
 	 * 1.<strong>If-Match</strong>.Put if ETags match with current object
 	 * 2.<strong>If-None-Match</strong>.Put if ETags don’t match with current object
 	 * 3.<strong>ETag</strong>.The MD5 hash of the object (optional to check written data)
@@ -1231,51 +1118,44 @@ public class PithosRESTAPI implements Serializable {
 	 * 15.<strong>X-Object-Public</strong>.Object is publicly accessible (optional)
 	 * 16.<strong>X-Object-Meta-*</strong>.Optional user defined metadata
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Request Parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional extended request/conflict response type (obsolete: always json is assumed)
 	 * 1.<strong>hashmap</strong>.Optional hashmap provided instead of data (no value parameter)
 	 * 1.<strong>delimiter</strong>.Optional copy/move objects starting with object’s path and delimiter (to be used with X-Copy-From/X-Move-From)
 	 * </pre>
-	 * 
-	 * @example <pre>
-	 * <strong>Upload file:</strong>
-	 * 
-	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
-	 * HashMap<String, String> parameters = new HashMap<String, String>();
-	 * HashMap<String, String> headers = new HashMap<String, String>();
-	 * headers.put("Content-Type", "text/plain");
-	 * System.out.println(client.upload_file(new File("a_text_file"), null,"", parameters, headers));
-	 * </pre>
-	 * 
-	 * @example <pre>
-	 * <strong>Create a folder:</strong>
-	 * 
-	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
-	 * HashMap<String, String> parameters = new HashMap<String, String>();
-	 * HashMap<String, String> headers = new HashMap<String, String>();
-	 * System.out.println(client.upload_file("testfolder", "", "", parameters,headers));
-	 * </pre>
-	 * 
+	 * @example <strong>Upload file:</strong>
 	 * 
 	 *          <pre>
-	 * Reply Headers:
+	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
+	 * HashMap&lt;String, String&gt; parameters = new HashMap&lt;String, String&gt;();
+	 * HashMap&lt;String, String&gt; headers = new HashMap&lt;String, String&gt;();
+	 * headers.put(&quot;Content-Type&quot;, &quot;text/plain&quot;);
+	 * System.out.println(client.upload_file(new File(&quot;a_text_file&quot;), null, &quot;&quot;,
+	 * 		parameters, headers));
+	 * </pre>
+	 * @example <strong>Create a folder:</strong>
 	 * 
+	 *          <pre>
+	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
+	 * HashMap&lt;String, String&gt; parameters = new HashMap&lt;String, String&gt;();
+	 * HashMap&lt;String, String&gt; headers = new HashMap&lt;String, String&gt;();
+	 * System.out.println(client
+	 * 		.upload_file(&quot;testfolder&quot;, &quot;&quot;, &quot;&quot;, parameters, headers));
+	 * </pre>
+	 * @reply.headers <pre>
 	 * 1.<strong>ETag</strong>.The MD5 (or the Merkle if MD5 is deactivated) hash of the object
 	 * 2.<strong>X-Object-Version</strong>.The object’s new version
 	 * </pre>
-	 * 
 	 * @return Reponse code.
 	 * @throws IOException
-	 * 
 	 * @return.code <pre>
 	 * 201 (Created) - The object has been created
 	 * 403 (Forbidden) - If X-Copy-From and the source object is not available in the storage backend.
 	 * 409 (Conflict) - The object can not be created from the provided hashmap (a list of missing hashes will be included in the reply)
 	 * 411 (Length Required) - Missing Content-Length or Content-Type in the request
 	 * 413 (Request Entity Too Large) - Insufficient quota to complete the request
-	 * 422 (Unprocessable Entity) - The MD5 (or the Merkle if MD5 is deactivated) checksum of the data written to the storage system does not match the (optionally) supplied ETag value
+	 * 422 (Unprocessable Entity) - The MD5 (or the Merkle if MD5 is deactivated) checksum of the data written
+	 * 	   to the storage system does not match the (optionally) supplied ETag value
 	 * </pre>
 	 */
 	public String upload_file(Object file2upload, String contentLength,
@@ -1321,7 +1201,7 @@ public class PithosRESTAPI implements Serializable {
 						}
 					}
 				}
-				System.out.println(contentLength);
+				
 				this.getConnection().setDoOutput(true);
 
 				if (file2upload != null) {
@@ -1412,26 +1292,22 @@ public class PithosRESTAPI implements Serializable {
 	 *            Request parameters
 	 * @param headers
 	 *            Request headers
-	 * 
-	 *            <pre>
-	 * Request Parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional extended request/conflict response type (obsolete: always json is assumed)
 	 * 2.<strong>hashmap</strong>.Optional hashmap provided instead of data (no value parameter)
 	 * 3.<strong>delimiter</strong>.Optional copy/move objects starting with object’s path and delimiter (to be used with X-Copy-From/X-Move-From)
 	 * </pre>
-	 * 
 	 * @return Response code
 	 * @throws IOException
-	 * 
 	 * @return.code <pre>
 	 * 201 (Created) - The object has been created
 	 * 403 (Forbidden) - If X-Copy-From and the source object is not available in the storage backend.
 	 * 409 (Conflict) - The object can not be created from the provided hashmap (a list of missing hashes will be included in the reply)
 	 * 411 (Length Required) - Missing Content-Length or Content-Type in the request
 	 * 413 (Request Entity Too Large) - Insufficient quota to complete the request
-	 * 422 (Unprocessable Entity) - The MD5 (or the Merkle if MD5 is deactivated) checksum of the data written to the storage system does not match the (optionally) supplied ETag value
+	 * 422 (Unprocessable Entity) - The MD5 (or the Merkle if MD5 is deactivated) checksum of the data written to the storage system
+	 * 	   does not match the (optionally) supplied ETag value
 	 * </pre>
-	 * 
 	 */
 	public String copy_object(String fromcontainer, String filename,
 			String toContainer, String toFilename,
@@ -1494,26 +1370,22 @@ public class PithosRESTAPI implements Serializable {
 	 *            Request parameters
 	 * @param headers
 	 *            Request headers
-	 * 
-	 *            <pre>
-	 * Request Parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional extended request/conflict response type (obsolete: always json is assumed)
 	 * 2.<strong>hashmap</strong>.Optional hashmap provided instead of data (no value parameter)
 	 * 3.<strong>delimiter</strong>.Optional copy/move objects starting with object’s path and delimiter (to be used with X-Copy-From/X-Move-From)
 	 * </pre>
-	 * 
 	 * @return Response code
 	 * @throws IOException
-	 * 
 	 * @return.code <pre>
 	 * 201 (Created) - The object has been created
 	 * 403 (Forbidden) - If X-Copy-From and the source object is not available in the storage backend.
 	 * 409 (Conflict) - The object can not be created from the provided hashmap (a list of missing hashes will be included in the reply)
 	 * 411 (Length Required) - Missing Content-Length or Content-Type in the request
 	 * 413 (Request Entity Too Large) - Insufficient quota to complete the request
-	 * 422 (Unprocessable Entity) - The MD5 (or the Merkle if MD5 is deactivated) checksum of the data written to the storage system does not match the (optionally) supplied ETag value
+	 * 422 (Unprocessable Entity) - The MD5 (or the Merkle if MD5 is deactivated) checksum of the data written to the storage system
+	 *	   does not match the (optionally) supplied ETag value
 	 * </pre>
-	 * 
 	 */
 	public String move_object(String fromcontainer, String filename,
 			String toContainer, String toFilename,
@@ -1574,16 +1446,11 @@ public class PithosRESTAPI implements Serializable {
 	 *            The request parameters
 	 * @param headers
 	 *            The request headers
-	 * 
-	 *            <pre>
-	 * Request parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional conflict response type (can be json or xml)
 	 * 2.<strong>update</strong>.Do not replace metadata (no value parameter)
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Request Headers:
-	 * 
+	 * @my.headers <pre>
 	 * 1.<strong>If-Match</strong>.Put if ETags match with current object
 	 * 2.<strong>If-None-Match</strong>.Put if ETags don’t match with current object
 	 * 3.<strong>Content-Length</strong>.The size of the data written (optional, to update)
@@ -1601,10 +1468,7 @@ public class PithosRESTAPI implements Serializable {
 	 * 15.<strong>X-Object-Public</strong>.Object is publicly accessible (optional)
 	 * 16.<strong>X-Object-Meta-*</strong>.Optional user defined metadata
 	 * </pre>
-	 * 
-	 * @example <pre>
-	 * <strong>Update file:</strong>
-	 * 
+	 * @example <strong>Update file:</strong><pre>
 	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
 	 * HashMap<String, String> parameters = new HashMap<String, String>();
 	 * HashMap<String, String> headers = new HashMap<String, String>();
@@ -1612,7 +1476,6 @@ public class PithosRESTAPI implements Serializable {
 	 * <strong>headers.put("Content-Range", "bytes 10-19/*");</strong>
 	 * System.out.println(client.update_append_truncate_object("","an_object", "0123456789", parameters,headers));
 	 * </pre>
-	 * 
 	 * @example <pre>
 	 * <strong>Append file:</strong>
 	 * 
