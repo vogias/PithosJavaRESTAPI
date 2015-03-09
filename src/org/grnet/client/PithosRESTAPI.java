@@ -1201,7 +1201,7 @@ public class PithosRESTAPI implements Serializable {
 						}
 					}
 				}
-				
+
 				this.getConnection().setDoOutput(true);
 
 				if (file2upload != null) {
@@ -1384,7 +1384,7 @@ public class PithosRESTAPI implements Serializable {
 	 * 411 (Length Required) - Missing Content-Length or Content-Type in the request
 	 * 413 (Request Entity Too Large) - Insufficient quota to complete the request
 	 * 422 (Unprocessable Entity) - The MD5 (or the Merkle if MD5 is deactivated) checksum of the data written to the storage system
-	 *	   does not match the (optionally) supplied ETag value
+	 *    does not match the (optionally) supplied ETag value
 	 * </pre>
 	 */
 	public String move_object(String fromcontainer, String filename,
@@ -1468,7 +1468,9 @@ public class PithosRESTAPI implements Serializable {
 	 * 15.<strong>X-Object-Public</strong>.Object is publicly accessible (optional)
 	 * 16.<strong>X-Object-Meta-*</strong>.Optional user defined metadata
 	 * </pre>
-	 * @example <strong>Update file:</strong><pre>
+	 * @example <strong>Update file:</strong>
+	 * 
+	 *          <pre>
 	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
 	 * HashMap<String, String> parameters = new HashMap<String, String>();
 	 * HashMap<String, String> headers = new HashMap<String, String>();
@@ -1476,9 +1478,9 @@ public class PithosRESTAPI implements Serializable {
 	 * <strong>headers.put("Content-Range", "bytes 10-19/*");</strong>
 	 * System.out.println(client.update_append_truncate_object("","an_object", "0123456789", parameters,headers));
 	 * </pre>
-	 * @example <pre>
-	 * <strong>Append file:</strong>
+	 * @example <strong>Append file:</strong>
 	 * 
+	 *          <pre>
 	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
 	 * HashMap<String, String> parameters = new HashMap<String, String>();
 	 * HashMap<String, String> headers = new HashMap<String, String>();
@@ -1486,10 +1488,9 @@ public class PithosRESTAPI implements Serializable {
 	 * <strong>headers.put("Content-Range", "bytes *\/*");</strong>
 	 * System.out.println(client.update_append_truncate_object("","an_object", "0123456789", parameters,headers));
 	 * </pre>
+	 * @example <strong>Truncate file:</strong>
 	 * 
-	 * @example <pre>
-	 * <strong>Truncate file:</strong>
-	 * 
+	 *          <pre>
 	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
 	 * HashMap<String, String> parameters = new HashMap<String, String>();
 	 * HashMap<String, String> headers = new HashMap<String, String>();
@@ -1506,7 +1507,8 @@ public class PithosRESTAPI implements Serializable {
 	 * 202 (Accepted) - The request has been accepted (not a data update)
 	 * 204 (No Content) - The request succeeded (data updated)
 	 * 400 (Bad Request) - nvalid X-Object-Sharing or X-Object-Bytes header or missing Content-Range header or invalid source object
-	 * or source object length is smaller than range length or Content-Length does not match range length or the metadata exceed in number the allowed object metadata
+	 *     or source object length is smaller than range length or Content-Length does not match range length
+	 *     or the metadata exceed in number the allowed object metadata
 	 * 411 (Length Required) - Missing Content-Length or Content-Type in the request
 	 * 413 (Request Entity Too Large) - Insufficient quota to complete the request
 	 * 416 (Range Not Satisfiable) - The supplied range is invalid
@@ -1580,17 +1582,11 @@ public class PithosRESTAPI implements Serializable {
 	 * @param headers
 	 *            The request headers
 	 * 
-	 *            *
-	 * 
-	 *            <pre>
-	 * Request parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional conflict response type (can be json or xml)
 	 * 2.<strong>update</strong>.Do not replace metadata (no value parameter)
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Request Headers:
-	 * 
+	 * @my.headers <pre>
 	 * 1.<strong>If-Match</strong>.Put if ETags match with current object
 	 * 2.<strong>If-None-Match</strong>.Put if ETags don’t match with current object
 	 * 3.<strong>Content-Length</strong>.The size of the data written (optional, to update)
@@ -1609,9 +1605,7 @@ public class PithosRESTAPI implements Serializable {
 	 * 16.<strong>X-Object-Meta-*</strong>.Optional user defined metadata
 	 * </pre>
 	 * 
-	 * @example <pre>
-	 * <strong>Add object metadata:</strong>
-	 * 
+	 * @example <strong>Add object metadata:</strong><pre>
 	 * PithosRESTAPI client = new PithosRESTAPI(url, token, username);
 	 * HashMap<String, String> parameters = new HashMap<String, String>();
 	 * HashMap<String, String> headers = new HashMap<String, String>();
@@ -1627,7 +1621,8 @@ public class PithosRESTAPI implements Serializable {
 	 * 202 (Accepted) - The request has been accepted (not a data update)
 	 * 204 (No Content) - The request succeeded (data updated)
 	 * 400 (Bad Request) - nvalid X-Object-Sharing or X-Object-Bytes header or missing Content-Range header or invalid source object
-	 * or source object length is smaller than range length or Content-Length does not match range length or the metadata exceed in number the allowed object metadata
+	 *     or source object length is smaller than range length or Content-Length does not match range length
+	 *     or the metadata exceed in number the allowed object metadata
 	 * 411 (Length Required) - Missing Content-Length or Content-Type in the request
 	 * 413 (Request Entity Too Large) - Insufficient quota to complete the request
 	 * 416 (Range Not Satisfiable) - The supplied range is invalid
@@ -1682,17 +1677,11 @@ public class PithosRESTAPI implements Serializable {
 	 * @param headers
 	 *            The request headers
 	 * 
-	 *            *
-	 * 
-	 *            <pre>
-	 * Request parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional conflict response type (can be json or xml)
 	 * 2.<strong>update</strong>.Do not replace metadata (no value parameter)
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Request Headers:
-	 * 
+	 * @my.headers <pre>
 	 * 1.<strong>If-Match</strong>.Put if ETags match with current object
 	 * 2.<strong>If-None-Match</strong>.Put if ETags don’t match with current object
 	 * 3.<strong>Content-Length</strong>.The size of the data written (optional, to update)
@@ -1710,8 +1699,6 @@ public class PithosRESTAPI implements Serializable {
 	 * 15.<strong>X-Object-Public</strong>.Object is publicly accessible (optional)
 	 * 16.<strong>X-Object-Meta-*</strong>.Optional user defined metadata
 	 * </pre>
-	 * 
-	 * 
 	 * @return Response code
 	 * @throws IOException
 	 * 
@@ -1776,17 +1763,11 @@ public class PithosRESTAPI implements Serializable {
 	 *            The request parameters
 	 * @param headers
 	 *            The request headers
-	 * 
-	 * 
-	 *            <pre>
-	 * Request parameters:
+	 * @my.attributes <pre>
 	 * 1.<strong>format</strong>.Optional conflict response type (can be json or xml)
 	 * 2.<strong>update</strong>.Do not replace metadata (no value parameter)
 	 * </pre>
-	 * 
-	 *            <pre>
-	 * Request Headers:
-	 * 
+	 * @my.headers <pre>
 	 * 1.<strong>If-Match</strong>.Put if ETags match with current object
 	 * 2.<strong>If-None-Match</strong>.Put if ETags don’t match with current object
 	 * 3.<strong>Content-Length</strong>.The size of the data written (optional, to update)
@@ -1804,7 +1785,6 @@ public class PithosRESTAPI implements Serializable {
 	 * 15.<strong>X-Object-Public</strong>.Object is publicly accessible (optional)
 	 * 16.<strong>X-Object-Meta-*</strong>.Optional user defined metadata
 	 * </pre>
-	 * 
 	 * 
 	 * @return Response code
 	 * @throws IOException
